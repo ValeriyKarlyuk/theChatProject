@@ -10,14 +10,14 @@
 
 <body>
     <div id="room-name">
-        <p>{{ chooseChatRoom }}</p>
-        <p>The following chat room has been chosen: <strong>{{ chosenChatRoom }}</strong></p>
-        <input v-model = "chosenChatRoom" type="text" size="40" />
-        <input id="room-name-submit" type="button" value="Enter" />
+        <p>What chat room would you like to enter?</p>
+        <p v-show = "!chooseChatRoom">{{ $data.chosenChatRoom }}</p>
+        <input v-focus v-model="chooseChatRoom" type="text" size="40" />
+        <input v-show="chooseChatRoom" type="button" value="Enter" />
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+    <script src="../../../../frontend/vueDirectives.js"></script>
     <script>
-        document.querySelector('#room-name-input').focus();
         document.querySelector('#room-name-input').onkeyup = function (e) {
             if (e.keyCode === 13) {  // enter, return
                 document.querySelector('#room-name-submit').click();
@@ -32,7 +32,7 @@
     <script>
         new Vue({
             el: '#room-name',
-            data: { chooseChatRoom: 'What chat room would you like to enter?', chosenChatRoom: 'none' }
+            data: { chooseChatRoom: '', chosenChatRoom: 'Node: to connect to the chosen room need to enter its name!'}
         });
     </script>
 </body>
