@@ -2,13 +2,21 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "author": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "main": "index.js",
   "dependencies": {
-    "vue": "^2.6.10"
-  }
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.2",
+    "vuetify": "^1.5.5"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-cli-plugin-vuetify": "^0.5.0",
+    "vuetify-loader": "^1.0.5"
+  },
+  "license": "ISC"
 }
