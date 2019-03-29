@@ -3,7 +3,8 @@
 <html>
 
 <head>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
     <!--<link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">-->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="utf-8" />
@@ -12,36 +13,38 @@
 
 <body>
     <div id="room-name">
-        <p>What chat room would you like to enter?</p>
-        <p v-show="!chooseChatRoom">{{ $data.chosenChatRoom }}</p>
-        <input v-focus v-model="chooseChatRoom" type="text" size="40" ref="inputValue" />
-        <input v-show="chooseChatRoom" @keyup="getChosenRoom" type="button" value="Enter" />
+        <form id="room-name_form" @submit="checkRoomName" method="POST">
+            <div id="room-name_choose">
+                <label for="roomName">What chat room would you like to enter?</label>
+                <input v-model="roomName" type="text" size="40" name="roomName" required>
+
+            </div>
+            <div id="room-name_connect">
+                <button type="submit">Enter</button>
+            </div>
+        </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
     <script src="../../../../frontend/components/vueDirectives.js"></script>
-    <!-- <script src="../../../../frontend/components/vueComponents.js"></script>-->
-    <script src="../../../../frontend/components/snackbar.js"></script>
-    <script>
-        document.querySelector('#room-name-submit').onclick = function (e) {
-            var roomName = document.querySelector('#room-name-input').value;
-            window.location.pathname = '/chat/' + roomName + '/';
-        };
-    </script>
     <script>
         new Vue({
             el: '#room-name',
             data: {
-                chooseChatRoom: '', chosenChatRoom: 'Node: to connect to the chosen room need to enter its name!'
+                roomName: null,
+                snackbar: false,
+                color: '',
+                mode: '',
+                timeout: 6000,
+                text: 'dfdf'
             },
             methods: {
-                getChosenRoom(e) {
-                    console.log(e.keyCode);
-                    if (e.keyCode === 13) {
-                        //for testing
-                        console.log('The enter has been pressed!');
-                        console.log(this.$refs.inputValue.value);
+                checkRoomName(e) {
+                    if (this.roomName) {
+                        return true;
                     }
+                    e.preventDefault();
+                    //following chunks of code when we can check out roomName field
                 }
             }
         });

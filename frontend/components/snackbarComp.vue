@@ -11,7 +11,7 @@
 export default {
     data() {
         return {
-            snackbar: false,
+            snackbar: true,
             y: 'top',
             x: null,
             mode: '',
